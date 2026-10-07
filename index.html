@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Travel Company | Tours y Viajes en Cancún</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--teal:#00c0ae;--teal-dark:#0a7a70;--gold:#edb100;--dark:#212121;--sand:#fdf8ec}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#333;background:#fff}
+.topbar{background:linear-gradient(90deg,#0a7a70,#00c0ae);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.topbar a{color:#fff;text-decoration:none;font-weight:600}
+header{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:50}
+.logo{font-size:25px;font-weight:800;color:var(--dark);line-height:1.05}
+.logo span{color:var(--teal)}
+.logo small{display:block;font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px}
+nav a{margin:0 11px;text-decoration:none;color:var(--dark);font-weight:600;font-size:15px}
+nav a:hover{color:var(--teal)}
+.lang button{border:2px solid var(--teal);background:#fff;color:var(--teal);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700;margin-left:6px}
+.lang button.active{background:var(--teal);color:#fff}
+.hero{background:linear-gradient(rgba(10,122,112,.55),rgba(0,192,174,.35)),url('imgs/hero.jpg') center/cover;color:#fff;text-align:center;padding:130px 20px 110px}
+.hero .tag{display:inline-block;background:rgba(237,177,0,.92);color:#212121;font-weight:800;padding:8px 22px;border-radius:20px;font-size:14px;letter-spacing:1px;margin-bottom:18px}
+.hero h1{font-size:54px;text-shadow:0 2px 14px rgba(0,0,0,.55);margin-bottom:14px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:20px;margin-bottom:32px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.btn{display:inline-block;background:var(--teal);color:#fff;padding:15px 38px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px;margin:6px;box-shadow:0 4px 14px rgba(0,192,174,.4)}
+.btn.green{background:#25D366;box-shadow:0 4px 14px rgba(37,211,102,.4)}
+.wave{display:block;width:100%;height:60px;margin-top:-1px}
+.badges{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;background:var(--sand);padding:40px 20px;text-align:center}
+.badge{max-width:220px}
+.badge .i{font-size:38px}
+.badge h4{color:var(--teal-dark);margin:8px 0 4px}
+.badge p{font-size:14px;color:#666}
+section{padding:64px 24px;max-width:1150px;margin:auto}
+h2{text-align:center;color:var(--dark);font-size:34px;margin-bottom:6px}
+h2 .t{color:var(--teal)}
+.rule{width:90px;height:4px;background:var(--gold);margin:0 auto 14px;border-radius:2px}
+.sub{text-align:center;color:#777;margin-bottom:42px;font-size:17px}
+.tours{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+.card{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);background:#fff;border-top:5px solid var(--teal);transition:transform .2s}
+.card:hover{transform:translateY(-5px)}
+.card img{width:100%;height:190px;object-fit:cover}
+.card .body{padding:20px}
+.card h3{color:var(--dark);margin-bottom:8px;font-size:20px}
+.card h3 .t{color:var(--teal)}
+.card p{font-size:14px;color:#666;margin-bottom:16px;min-height:42px}
+.card .wa{background:var(--teal);color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:700;font-size:14px;display:inline-block}
+.stripe{background:linear-gradient(135deg,#0a7a70,#00c0ae);color:#fff;padding:56px 24px;text-align:center}
+.stripe h2{color:#fff}
+.stripe .rule{background:var(--gold)}
+.stripe p{font-size:18px;max-width:700px;margin:0 auto}
+.servs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;text-align:center}
+.serv{background:var(--sand);border-radius:14px;padding:32px 18px;border-bottom:5px solid var(--gold)}
+.serv .i{font-size:46px}
+.serv h3{color:var(--teal-dark);margin:10px 0 6px}
+.serv p{font-size:14px;color:#666}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.rev{background:#fffdf4;border:1px solid #f0e2b8;border-top:5px solid var(--gold);padding:24px;border-radius:12px}
+.rev .stars{color:var(--gold);font-size:20px;margin-bottom:10px;letter-spacing:2px}
+.rev p{font-style:italic;color:#555;margin-bottom:10px}
+.rev b{color:var(--teal-dark)}
+.cta{background:linear-gradient(rgba(10,122,112,.85),rgba(0,192,174,.75)),url('imgs/cenote.jpg') center/cover;color:#fff;text-align:center;padding:80px 24px}
+.cta h2{color:#fff}
+.cta .rule{background:var(--gold)}
+.cta p{margin:12px 0 30px;font-size:19px}
+footer{background:var(--dark);color:#bbb;text-align:center;padding:32px 20px;font-size:14px}
+footer a{color:var(--teal);text-decoration:none}
+footer .gold{color:var(--gold)}
+.fab{position:fixed;bottom:24px;right:24px;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:99}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<span>📞 <a href="tel:+529983153479">+52 998 315 3479</a></span>
+<span>📍 residencial los almendros sm, 77507 Cancún, Q.R., México</span>
+</div>
+
+<header>
+<div class="logo">Maya <span>Travel</span> Company<small>CANCÚN · MÉXICO</small></div>
+<nav>
+<a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
+<a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+<a href="#opiniones" data-es="Opiniones" data-en="Reviews">Opiniones</a>
+<a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+</nav>
+<div class="lang"><button id="btnEs" class="active" onclick="setLang('es')">ES</button><button id="btnEn" onclick="setLang('en')">EN</button></div>
+</header>
+
+<div class="hero">
+<div class="tag" data-es="🌴 AVENTURA TROPICAL 🌴" data-en="🌴 TROPICAL ADVENTURE 🌴">🌴 AVENTURA TROPICAL 🌴</div>
+<h1 data-es="Vive el <em>Caribe</em> como nunca" data-en="Live the <em>Caribbean</em> like never before">Vive el <em>Caribe</em> como nunca</h1>
+<p data-es="Tours, traslados, hoteles y experiencias únicas en Cancún y la Riviera Maya" data-en="Tours, transfers, hotels and unique experiences in Cancun and the Riviera Maya">Tours, traslados, hoteles y experiencias únicas en Cancún y la Riviera Maya</p>
+<a class="btn green" href="https://wa.me/529983153479?text=Hola%20Maya%20Travel%20Company%2C%20quiero%20info%20de%20tours" data-es="📲 Reservar por WhatsApp" data-en="📲 Book on WhatsApp">📲 Reservar por WhatsApp</a>
+</div>
+
+<div class="badges">
+<div class="badge"><div class="i">✅</div><h4 data-es="Pago seguro" data-en="Secure payment">Pago seguro</h4><p data-es="Reserva con confianza, sin cargos ocultos" data-en="Book with confidence, no hidden fees">Reserva con confianza, sin cargos ocultos</p></div>
+<div class="badge"><div class="i">🚐</div><h4 data-es="Traslados incluidos" data-en="Transfers included">Traslados incluidos</h4><p data-es="Recogida en tu hotel en Cancún y Riviera Maya" data-en="Pickup at your hotel in Cancun and Riviera Maya">Recogida en tu hotel en Cancún y Riviera Maya</p></div>
+<div class="badge"><div class="i">🤝</div><h4 data-es="Atención personalizada" data-en="Personalized service">Atención personalizada</h4><p data-es="Asesores locales que hablan tu idioma" data-en="Local advisors who speak your language">Asesores locales que hablan tu idioma</p></div>
+<div class="badge"><div class="i">⭐</div><h4 data-es="Mejor precio garantizado" data-en="Best price guarantee">Mejor precio garantizado</h4><p data-es="Igualamos cualquier precio de la competencia" data-en="We match any competitor's price">Igualamos cualquier precio de la competencia</p></div>
+</div>
+
+<section id="tours">
+<h2><span class="t">🌊</span> <span data-es="Tours destacados" data-en="Featured tours">Tours destacados</span></h2>
+<div class="rule"></div>
+<p class="sub" data-es="Las experiencias que todo visitante debe vivir en el Caribe mexicano" data-en="The experiences every visitor must live in the Mexican Caribbean">Las experiencias que todo visitante debe vivir en el Caribe mexicano</p>
+<div class="tours">
+<div class="card"><img src="imgs/hero.jpg" alt="Isla Mujeres"><div class="body"><h3>Isla Mujeres <span class="t">en Catamarán</span></h3><p data-es="Snorkel, playa paradisíaca y fiesta a bordo rumbo al paraíso" data-en="Snorkel, paradise beach and party on board to paradise">Snorkel, playa paradisíaca y fiesta a bordo rumbo al paraíso</p><a class="wa" href="https://wa.me/529983153479?text=Info%20tour%20Isla%20Mujeres">WhatsApp →</a></div></div>
+<div class="card"><img src="imgs/chichen.jpg" alt="Chichén Itzá"><div class="body"><h3>Chichén <span class="t">Itzá</span></h3><p data-es="Maravilla del mundo + cenote sagrado, tour todo incluido" data-en="World wonder + sacred cenote, all-inclusive tour">Maravilla del mundo + cenote sagrado, tour todo incluido</p><a class="wa" href="https://wa.me/529983153479?text=Info%20tour%20Chichen%20Itza">WhatsApp →</a></div></div>
+<div class="card"><img src="imgs/cenote.jpg" alt="Cenotes"><div class="body"><h3>Cenotes <span class="t">& selva maya</span></h3><p data-es="Nada en aguas turquesa entre la selva tropical" data-en="Swim in turquoise waters in the tropical jungle">Nada en aguas turquesa entre la selva tropical</p><a class="wa" href="https://wa.me/529983153479?text=Info%20tour%20cenotes">WhatsApp →</a></div></div>
+<div class="card"><img src="imgs/xcaret.jpg" alt="Parques"><div class="body"><h3>Xcaret, Xplor <span class="t">& más</span></h3><p data-es="Tirolesas, ríos subterráneos y cultura mexicana" data-en="Ziplines, underground rivers and Mexican culture">Tirolesas, ríos subterráneos y cultura mexicana</p><a class="wa" href="https://wa.me/529983153479?text=Info%20parques%20Xcaret%20Xplor">WhatsApp →</a></div></div>
+</div>
+</section>
+
+<div class="stripe">
+<h2 data-es="🐬 También: delfines, Coco Bongo y barco pirata" data-en="🐬 Also: dolphins, Coco Bongo and pirate ship">🐬 También: delfines, Coco Bongo y barco pirata</h2>
+<div class="rule"></div>
+<p data-es="Pregunta por nuestros paquetes de vida nocturna y experiencias VIP en el Caribe" data-en="Ask about our nightlife packages and VIP experiences in the Caribbean">Pregunta por nuestros paquetes de vida nocturna y experiencias VIP en el Caribe</p>
+</div>
+
+<section id="servicios">
+<h2><span data-es="Nuestros servicios" data-en="Our services">Nuestros servicios</span> <span class="t">🏝️</span></h2>
+<div class="rule"></div>
+<p class="sub" data-es="Todo para tu viaje, en un solo lugar" data-en="Everything for your trip, in one place">Todo para tu viaje, en un solo lugar</p>
+<div class="servs">
+<div class="serv"><div class="i">🛳️</div><h3 data-es="Tours" data-en="Tours">Tours</h3><p data-es="Isla Mujeres, Chichén Itzá, Coco Bongo, delfines y más" data-en="Isla Mujeres, Chichen Itza, Coco Bongo, dolphins and more">Isla Mujeres, Chichén Itzá, Coco Bongo, delfines y más</p></div>
+<div class="serv"><div class="i">✈️</div><h3 data-es="Traslados" data-en="Transfers">Traslados</h3><p data-es="Aeropuerto ↔ hotel, seguros y puntuales" data-en="Airport ↔ hotel, safe and on time">Aeropuerto ↔ hotel, seguros y puntuales</p></div>
+<div class="serv"><div class="i">🏨</div><h3 data-es="Hoteles" data-en="Hotels">Hoteles</h3><p data-es="Las mejores tarifas del Caribe mexicano" data-en="The best rates in the Mexican Caribbean">Las mejores tarifas del Caribe mexicano</p></div>
+<div class="serv"><div class="i">🚗</div><h3 data-es="Renta de autos" data-en="Car rental">Renta de autos</h3><p data-es="Libertad total para moverte en el Caribe" data-en="Total freedom to move around the Caribbean">Libertad total para moverte en el Caribe</p></div>
+<div class="serv"><div class="i">⛵</div><h3 data-es="Renta de yates" data-en="Yacht rental">Renta de yates</h3><p data-es="Embarcaciones privadas para grupos y eventos" data-en="Private boats for groups and events">Embarcaciones privadas para grupos y eventos</p></div>
+</div>
+</section>
+
+<section id="opiniones">
+<h2><span data-es="Lo que dicen nuestros viajeros" data-en="What our travelers say">Lo que dicen nuestros viajeros</span> <span class="t">⭐</span></h2>
+<div class="rule"></div>
+<p class="sub" data-es="Experiencias reales en Cancún" data-en="Real experiences in Cancun">Experiencias reales en Cancún</p>
+<div class="revs">
+<div class="rev"><div class="stars">★★★★★</div><p data-es="Buena experiencia, atentos y amables. El tour a Isla Mujeres superó nuestras expectativas." data-en="Great experience, attentive and friendly. The Isla Mujeres tour exceeded our expectations.">"Buena experiencia, atentos y amables. El tour a Isla Mujeres superó nuestras expectativas."</p><b>— Carolina M.</b></div>
+<div class="rev"><div class="stars">★★★★★</div><p data-es="Nos recogieron puntuales del hotel y todo el tour a Chichén Itzá estuvo perfecto." data-en="They picked us up on time from the hotel and the whole Chichen Itza tour was perfect.">"Nos recogieron puntuales del hotel y todo el tour a Chichén Itzá estuvo perfecto."</p><b>— Diego R.</b></div>
+<div class="rev"><div class="stars">★★★★★</div><p data-es="Reservamos el yate para un grupo de amigos, increíble servicio de principio a fin." data-en="We booked the yacht for a group of friends, amazing service from start to finish.">"Reservamos el yate para un grupo de amigos, increíble servicio de principio a fin."</p><b>— Sofia L.</b></div>
+</div>
+</section>
+
+<div class="cta" id="contacto">
+<h2 data-es="¿Listo para tu próxima aventura?" data-en="Ready for your next adventure?">¿Listo para tu próxima aventura?</h2>
+<div class="rule"></div>
+<p data-es="Escríbenos por WhatsApp y recibe asesoría gratuita hoy mismo 🌺" data-en="Message us on WhatsApp and get free advice today 🌺">Escríbenos por WhatsApp y recibe asesoría gratuita hoy mismo 🌺</p>
+<a class="btn green" href="https://wa.me/529983153479?text=Hola%20Maya%20Travel%20Company%2C%20quiero%20planear%20mi%20viaje">📲 +52 998 315 3479</a>
+</div>
+
+<footer>
+Maya Travel Company · residencial los almendros sm, 77507 Cancún, Q.R., México · <a href="https://mayatravelcompany.com/">mayatravelcompany.com</a><br>
+<span class="gold">🌴</span> <span data-es="Demo creada por New Age Professional Services" data-en="Demo created by New Age Professional Services">Demo creada por New Age Professional Services</span> <span class="gold">🌴</span>
+</footer>
+
+<a class="fab" href="https://wa.me/529983153479?text=Hola%20Maya%20Travel%20Company">💬</a>
+
+<script>
+function setLang(l){
+document.querySelectorAll('[data-es]').forEach(e=>{e.innerHTML=e.getAttribute('data-'+l)});
+document.documentElement.lang=l;
+document.getElementById('btnEs').classList.toggle('active',l==='es');
+document.getElementById('btnEn').classList.toggle('active',l==='en');
+}
+</script>
+</body>
+</html>
