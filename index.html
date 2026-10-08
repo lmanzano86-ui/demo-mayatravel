@@ -4,67 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maya Travel Company | Tours y Viajes en Cancún</title>
+<link rel="icon" href="imgs/logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--teal:#00c0ae;--teal-dark:#0a7a70;--gold:#edb100;--dark:#212121;--sand:#fdf8ec}
+:root{--blue:#1b2a5e;--blue-dark:#101c40;--gold:#c9962b;--dark:#212121;--sand:#fdf8ec}
 body{font-family:'Segoe UI',Arial,sans-serif;color:#333;background:#fff}
-.topbar{background:linear-gradient(90deg,#0a7a70,#00c0ae);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.topbar{background:linear-gradient(90deg,#101c40,#1b2a5e);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .topbar a{color:#fff;text-decoration:none;font-weight:600}
 header{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:50}
-.logo{font-size:25px;font-weight:800;color:var(--dark);line-height:1.05}
-.logo span{color:var(--teal)}
+.logo{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:800;color:var(--dark);line-height:1.05}.logo img{width:66px;height:66px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;background:#fff}
+.logo span{color:var(--blue)}
 .logo small{display:block;font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px}
 nav a{margin:0 11px;text-decoration:none;color:var(--dark);font-weight:600;font-size:15px}
-nav a:hover{color:var(--teal)}
-.lang button{border:2px solid var(--teal);background:#fff;color:var(--teal);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700;margin-left:6px}
-.lang button.active{background:var(--teal);color:#fff}
-.hero{background:linear-gradient(rgba(10,122,112,.55),rgba(0,192,174,.35)),url('imgs/hero.jpg') center/cover;color:#fff;text-align:center;padding:130px 20px 110px}
+nav a:hover{color:var(--blue)}
+.lang button{border:2px solid var(--blue);background:#fff;color:var(--blue);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700;margin-left:6px}
+.lang button.active{background:var(--blue);color:#fff}
+.hero{background:linear-gradient(rgba(27,42,94,.55),rgba(27,42,94,.35)),url('imgs/hero.jpg') center/cover;color:#fff;text-align:center;padding:130px 20px 110px}
 .hero .tag{display:inline-block;background:rgba(237,177,0,.92);color:#212121;font-weight:800;padding:8px 22px;border-radius:20px;font-size:14px;letter-spacing:1px;margin-bottom:18px}
 .hero h1{font-size:54px;text-shadow:0 2px 14px rgba(0,0,0,.55);margin-bottom:14px}
 .hero h1 em{color:var(--gold);font-style:normal}
 .hero p{font-size:20px;margin-bottom:32px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
-.btn{display:inline-block;background:var(--teal);color:#fff;padding:15px 38px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px;margin:6px;box-shadow:0 4px 14px rgba(0,192,174,.4)}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:15px 38px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px;margin:6px;box-shadow:0 4px 14px rgba(27,42,94,.4)}
 .btn.green{background:#25D366;box-shadow:0 4px 14px rgba(37,211,102,.4)}
 .wave{display:block;width:100%;height:60px;margin-top:-1px}
 .badges{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;background:var(--sand);padding:40px 20px;text-align:center}
 .badge{max-width:220px}
 .badge .i{font-size:38px}
-.badge h4{color:var(--teal-dark);margin:8px 0 4px}
+.badge h4{color:var(--blue-dark);margin:8px 0 4px}
 .badge p{font-size:14px;color:#666}
 section{padding:64px 24px;max-width:1150px;margin:auto}
 h2{text-align:center;color:var(--dark);font-size:34px;margin-bottom:6px}
-h2 .t{color:var(--teal)}
+h2 .t{color:var(--blue)}
 .rule{width:90px;height:4px;background:var(--gold);margin:0 auto 14px;border-radius:2px}
 .sub{text-align:center;color:#777;margin-bottom:42px;font-size:17px}
 .tours{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
-.card{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);background:#fff;border-top:5px solid var(--teal);transition:transform .2s}
+.card{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);background:#fff;border-top:5px solid var(--blue);transition:transform .2s}
 .card:hover{transform:translateY(-5px)}
 .card img{width:100%;height:190px;object-fit:cover}
 .card .body{padding:20px}
 .card h3{color:var(--dark);margin-bottom:8px;font-size:20px}
-.card h3 .t{color:var(--teal)}
+.card h3 .t{color:var(--blue)}
 .card p{font-size:14px;color:#666;margin-bottom:16px;min-height:42px}
-.card .wa{background:var(--teal);color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:700;font-size:14px;display:inline-block}
-.stripe{background:linear-gradient(135deg,#0a7a70,#00c0ae);color:#fff;padding:56px 24px;text-align:center}
+.card .wa{background:var(--blue);color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:700;font-size:14px;display:inline-block}
+.stripe{background:linear-gradient(135deg,#101c40,#1b2a5e);color:#fff;padding:56px 24px;text-align:center}
 .stripe h2{color:#fff}
 .stripe .rule{background:var(--gold)}
 .stripe p{font-size:18px;max-width:700px;margin:0 auto}
 .servs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;text-align:center}
 .serv{background:var(--sand);border-radius:14px;padding:32px 18px;border-bottom:5px solid var(--gold)}
 .serv .i{font-size:46px}
-.serv h3{color:var(--teal-dark);margin:10px 0 6px}
+.serv h3{color:var(--blue-dark);margin:10px 0 6px}
 .serv p{font-size:14px;color:#666}
 .revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .rev{background:#fffdf4;border:1px solid #f0e2b8;border-top:5px solid var(--gold);padding:24px;border-radius:12px}
 .rev .stars{color:var(--gold);font-size:20px;margin-bottom:10px;letter-spacing:2px}
 .rev p{font-style:italic;color:#555;margin-bottom:10px}
-.rev b{color:var(--teal-dark)}
-.cta{background:linear-gradient(rgba(10,122,112,.85),rgba(0,192,174,.75)),url('imgs/cenote.jpg') center/cover;color:#fff;text-align:center;padding:80px 24px}
+.rev b{color:var(--blue-dark)}
+.cta{background:linear-gradient(rgba(27,42,94,.85),rgba(27,42,94,.75)),url('imgs/cenote.jpg') center/cover;color:#fff;text-align:center;padding:80px 24px}
 .cta h2{color:#fff}
 .cta .rule{background:var(--gold)}
 .cta p{margin:12px 0 30px;font-size:19px}
 footer{background:var(--dark);color:#bbb;text-align:center;padding:32px 20px;font-size:14px}
-footer a{color:var(--teal);text-decoration:none}
+footer a{color:var(--blue);text-decoration:none}
 footer .gold{color:var(--gold)}
 .fab{position:fixed;bottom:24px;right:24px;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:99}
 </style>
@@ -77,7 +78,7 @@ footer .gold{color:var(--gold)}
 </div>
 
 <header>
-<div class="logo">Maya <span>Travel</span> Company<small>CANCÚN · MÉXICO</small></div>
+<div class="logo"><img src="imgs/logo.png" alt="Maya Travel Company"><div>Maya <span>Travel</span> Company<small>RIVIERA MAYA · MÉXICO</small></div></div>
 <nav>
 <a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
 <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
