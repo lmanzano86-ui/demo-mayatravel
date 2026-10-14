@@ -4,68 +4,88 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maya Travel Company | Tours y Viajes en Cancún</title>
-<link rel="icon" href="imgs/logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--blue:#1b2a5e;--blue-dark:#101c40;--gold:#c9962b;--dark:#212121;--sand:#fdf8ec}
+:root{--teal:#00c0ae;--teal-dark:#0a7a70;--gold:#edb100;--dark:#212121;--sand:#fdf8ec}
 body{font-family:'Segoe UI',Arial,sans-serif;color:#333;background:#fff}
-.topbar{background:linear-gradient(90deg,#101c40,#1b2a5e);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.topbar{background:linear-gradient(90deg,#0a7a70,#00c0ae);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .topbar a{color:#fff;text-decoration:none;font-weight:600}
 header{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:50}
-.logo{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:800;color:var(--dark);line-height:1.05}.logo img{width:66px;height:66px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;background:#fff}
-.logo span{color:var(--blue)}
+.logo{font-size:25px;font-weight:800;color:var(--dark);line-height:1.05}
+.logo span{color:var(--teal)}
 .logo small{display:block;font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px}
 nav a{margin:0 11px;text-decoration:none;color:var(--dark);font-weight:600;font-size:15px}
-nav a:hover{color:var(--blue)}
-.lang button{border:2px solid var(--blue);background:#fff;color:var(--blue);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700;margin-left:6px}
-.lang button.active{background:var(--blue);color:#fff}
-.hero{background:linear-gradient(rgba(27,42,94,.55),rgba(27,42,94,.35)),url('imgs/hero.jpg') center/cover;color:#fff;text-align:center;padding:130px 20px 110px}
+nav a:hover{color:var(--teal)}
+.lang button{border:2px solid var(--teal);background:#fff;color:var(--teal);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700;margin-left:6px}
+.lang button.active{background:var(--teal);color:#fff}
+.hero{background:linear-gradient(rgba(10,122,112,.55),rgba(0,192,174,.35)),url('imgs/hero.jpg') center/cover;color:#fff;text-align:center;padding:130px 20px 110px}
 .hero .tag{display:inline-block;background:rgba(237,177,0,.92);color:#212121;font-weight:800;padding:8px 22px;border-radius:20px;font-size:14px;letter-spacing:1px;margin-bottom:18px}
 .hero h1{font-size:54px;text-shadow:0 2px 14px rgba(0,0,0,.55);margin-bottom:14px}
 .hero h1 em{color:var(--gold);font-style:normal}
 .hero p{font-size:20px;margin-bottom:32px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
-.btn{display:inline-block;background:var(--blue);color:#fff;padding:15px 38px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px;margin:6px;box-shadow:0 4px 14px rgba(27,42,94,.4)}
+.btn{display:inline-block;background:var(--teal);color:#fff;padding:15px 38px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px;margin:6px;box-shadow:0 4px 14px rgba(0,192,174,.4)}
 .btn.green{background:#25D366;box-shadow:0 4px 14px rgba(37,211,102,.4)}
 .wave{display:block;width:100%;height:60px;margin-top:-1px}
 .badges{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;background:var(--sand);padding:40px 20px;text-align:center}
 .badge{max-width:220px}
 .badge .i{font-size:38px}
-.badge h4{color:var(--blue-dark);margin:8px 0 4px}
+.badge h4{color:var(--teal-dark);margin:8px 0 4px}
 .badge p{font-size:14px;color:#666}
 section{padding:64px 24px;max-width:1150px;margin:auto}
 h2{text-align:center;color:var(--dark);font-size:34px;margin-bottom:6px}
-h2 .t{color:var(--blue)}
+h2 .t{color:var(--teal)}
 .rule{width:90px;height:4px;background:var(--gold);margin:0 auto 14px;border-radius:2px}
 .sub{text-align:center;color:#777;margin-bottom:42px;font-size:17px}
 .tours{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
-.card{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);background:#fff;border-top:5px solid var(--blue);transition:transform .2s}
+.card{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);background:#fff;border-top:5px solid var(--teal);transition:transform .2s}
+/* Widget Reservas Travel (vista previa estática; el widget en vivo la reemplaza) */
+#rt-widget{max-width:640px;margin:0 auto}
+.rtw-preview{border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.rtw-p-head{display:flex;justify-content:space-between;align-items:center;background:#0d9488;color:#fff;padding:14px 18px}
+.rtw-p-head h3{margin:0;font-size:18px}
+.rtw-p-lang span{border:1px solid #fff;border-radius:12px;padding:2px 10px;font-size:12px;margin-left:6px;opacity:.7}
+.rtw-p-lang span.on{background:#fff;color:#0d9488;opacity:1;font-weight:700}
+.rtw-p-steps{display:flex;background:#f8fafc;border-bottom:1px solid #e2e8f0}
+.rtw-p-steps span{flex:1;text-align:center;padding:10px 4px;font-size:12px;color:#94a3b8;font-weight:600;border-top:3px solid transparent}
+.rtw-p-steps span.on{color:#0d9488;border-top-color:#0d9488}
+.rtw-p-body{padding:18px}
+.rtw-p-body label{display:block;font-weight:700;font-size:13px;margin:12px 0 6px;color:#0f172a}
+.rtw-p-body label:first-child{margin-top:0}
+.rtw-p-types{display:flex;gap:8px}
+.rtw-p-types span{flex:1;text-align:center;border:2px solid #e2e8f0;border-radius:10px;padding:10px;font-size:14px;font-weight:600;color:#64748b}
+.rtw-p-types span.on{border-color:#0d9488;color:#0d9488;background:#f0fdfa}
+.rtw-p-select{border:2px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:14px;color:#0f172a}
+.rtw-p-veh{display:flex;justify-content:space-between;align-items:center;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;margin-bottom:8px}
+.rtw-p-veh small{display:block;color:#64748b;font-weight:400}
+.rtw-p-veh .pr{color:#0d9488;font-size:17px}
+.rtw-p-btn{background:#0d9488;color:#fff;text-align:center;font-weight:700;padding:13px;border-radius:10px;margin-top:16px;font-size:16px}
 .card:hover{transform:translateY(-5px)}
 .card img{width:100%;height:190px;object-fit:cover}
 .card .body{padding:20px}
 .card h3{color:var(--dark);margin-bottom:8px;font-size:20px}
-.card h3 .t{color:var(--blue)}
+.card h3 .t{color:var(--teal)}
 .card p{font-size:14px;color:#666;margin-bottom:16px;min-height:42px}
-.card .wa{background:var(--blue);color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:700;font-size:14px;display:inline-block}
-.stripe{background:linear-gradient(135deg,#101c40,#1b2a5e);color:#fff;padding:56px 24px;text-align:center}
+.card .wa{background:var(--teal);color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:700;font-size:14px;display:inline-block}
+.stripe{background:linear-gradient(135deg,#0a7a70,#00c0ae);color:#fff;padding:56px 24px;text-align:center}
 .stripe h2{color:#fff}
 .stripe .rule{background:var(--gold)}
 .stripe p{font-size:18px;max-width:700px;margin:0 auto}
 .servs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;text-align:center}
 .serv{background:var(--sand);border-radius:14px;padding:32px 18px;border-bottom:5px solid var(--gold)}
 .serv .i{font-size:46px}
-.serv h3{color:var(--blue-dark);margin:10px 0 6px}
+.serv h3{color:var(--teal-dark);margin:10px 0 6px}
 .serv p{font-size:14px;color:#666}
 .revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .rev{background:#fffdf4;border:1px solid #f0e2b8;border-top:5px solid var(--gold);padding:24px;border-radius:12px}
 .rev .stars{color:var(--gold);font-size:20px;margin-bottom:10px;letter-spacing:2px}
 .rev p{font-style:italic;color:#555;margin-bottom:10px}
-.rev b{color:var(--blue-dark)}
-.cta{background:linear-gradient(rgba(27,42,94,.85),rgba(27,42,94,.75)),url('imgs/cenote.jpg') center/cover;color:#fff;text-align:center;padding:80px 24px}
+.rev b{color:var(--teal-dark)}
+.cta{background:linear-gradient(rgba(10,122,112,.85),rgba(0,192,174,.75)),url('imgs/cenote.jpg') center/cover;color:#fff;text-align:center;padding:80px 24px}
 .cta h2{color:#fff}
 .cta .rule{background:var(--gold)}
 .cta p{margin:12px 0 30px;font-size:19px}
 footer{background:var(--dark);color:#bbb;text-align:center;padding:32px 20px;font-size:14px}
-footer a{color:var(--blue);text-decoration:none}
+footer a{color:var(--teal);text-decoration:none}
 footer .gold{color:var(--gold)}
 .fab{position:fixed;bottom:24px;right:24px;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:99}
 </style>
@@ -78,9 +98,10 @@ footer .gold{color:var(--gold)}
 </div>
 
 <header>
-<div class="logo"><img src="imgs/logo.png" alt="Maya Travel Company"><div>Maya <span>Travel</span> Company<small>RIVIERA MAYA · MÉXICO</small></div></div>
+<div class="logo">Maya <span>Travel</span> Company<small>CANCÚN · MÉXICO</small></div>
 <nav>
 <a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
+<a href="#reservar" data-es="Reservar" data-en="Book">Reservar</a>
 <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
 <a href="#opiniones" data-es="Opiniones" data-en="Reviews">Opiniones</a>
 <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
@@ -92,7 +113,7 @@ footer .gold{color:var(--gold)}
 <div class="tag" data-es="🌴 AVENTURA TROPICAL 🌴" data-en="🌴 TROPICAL ADVENTURE 🌴">🌴 AVENTURA TROPICAL 🌴</div>
 <h1 data-es="Vive el <em>Caribe</em> como nunca" data-en="Live the <em>Caribbean</em> like never before">Vive el <em>Caribe</em> como nunca</h1>
 <p data-es="Tours, traslados, hoteles y experiencias únicas en Cancún y la Riviera Maya" data-en="Tours, transfers, hotels and unique experiences in Cancun and the Riviera Maya">Tours, traslados, hoteles y experiencias únicas en Cancún y la Riviera Maya</p>
-<a class="btn green" href="https://wa.me/529983153479?text=Hola%20Maya%20Travel%20Company%2C%20quiero%20info%20de%20tours" data-es="📲 Reservar por WhatsApp" data-en="📲 Book on WhatsApp">📲 Reservar por WhatsApp</a>
+<a class="btn" href="#reservar" data-es="🚐 Reservar mi traslado" data-en="🚐 Book my transfer">🚐 Reservar mi traslado</a>
 </div>
 
 <div class="badges">
@@ -101,6 +122,30 @@ footer .gold{color:var(--gold)}
 <div class="badge"><div class="i">🤝</div><h4 data-es="Atención personalizada" data-en="Personalized service">Atención personalizada</h4><p data-es="Asesores locales que hablan tu idioma" data-en="Local advisors who speak your language">Asesores locales que hablan tu idioma</p></div>
 <div class="badge"><div class="i">⭐</div><h4 data-es="Mejor precio garantizado" data-en="Best price guarantee">Mejor precio garantizado</h4><p data-es="Igualamos cualquier precio de la competencia" data-en="We match any competitor's price">Igualamos cualquier precio de la competencia</p></div>
 </div>
+
+<section id="reservar">
+<h2><span class="t">🚐</span> <span data-es="Reserva tu traslado en línea" data-en="Book your transfer online">Reserva tu traslado en línea</span></h2>
+<div class="rule"></div>
+<p class="sub" data-es="Cotiza, reserva y recibe tu voucher al instante" data-en="Quote, book and get your voucher instantly">Cotiza, reserva y recibe tu voucher al instante</p>
+<div id="rt-widget">
+<!-- Vista previa estática del cotizador (el widget en vivo reemplaza este contenido al cargar) -->
+<div class="rtw-preview">
+<div class="rtw-p-head"><h3>Reserva en línea</h3><div class="rtw-p-lang"><span class="on">ES</span><span>EN</span></div></div>
+<div class="rtw-p-steps"><span class="on">1. Servicio</span><span>2. Detalles</span><span>3. Tus datos</span><span>4. Confirmación</span></div>
+<div class="rtw-p-body">
+<label data-es="Tipo de servicio" data-en="Service type">Tipo de servicio</label>
+<div class="rtw-p-types"><span class="on" data-es="Traslado" data-en="Transfer">Traslado</span><span data-es="Excursión" data-en="Excursion">Excursión</span><span data-es="Combo" data-en="Combo">Combo</span></div>
+<label data-es="Zona" data-en="Zone">Zona</label>
+<div class="rtw-p-select">Aeropuerto → Zona Hotelera ▾</div>
+<label data-es="Vehículo" data-en="Vehicle">Vehículo</label>
+<div class="rtw-p-veh"><div><b>Van Toyota Hiace</b><small>10 pasajeros</small></div><b class="pr">$900</b></div>
+<div class="rtw-p-veh"><div><b>Suburban</b><small>6 pasajeros</small></div><b class="pr">$1,400</b></div>
+<div class="rtw-p-btn" data-es="Continuar →" data-en="Continue →">Continuar →</div>
+</div>
+</div>
+</div>
+<script src="https://reservas-travel.onrender.com/widget.js" data-tenant="maya-travel"></script>
+</section>
 
 <section id="tours">
 <h2><span class="t">🌊</span> <span data-es="Tours destacados" data-en="Featured tours">Tours destacados</span></h2>
