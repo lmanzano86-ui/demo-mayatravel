@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Página de prueba — Mapa del recorrido A → B · ViajeReady</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;margin:0;background:#f1f5f9;color:#0f172a}
+.hero{background:linear-gradient(135deg,#0d9488,#0a6e66);color:#fff;padding:30px 18px 46px;text-align:center}
+.hero h1{margin:0 0 6px;font-size:24px}
+.hero p{margin:0;opacity:.92;font-size:14.5px}
+.tag{display:inline-block;background:#f59e0b;color:#111827;font-weight:800;font-size:12px;border-radius:20px;padding:4px 12px;margin-bottom:10px}
+.wrap{max-width:640px;margin:-26px auto 0;padding:0 14px 50px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 12px 32px rgba(15,23,42,.10);padding:22px 18px}
+label{display:block;font-size:13px;font-weight:700;color:#334155;margin:12px 0 5px}
+select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;background:#fff}
+.note{font-size:13px;color:#64748b;margin-top:16px;line-height:1.5}
+h3{margin:0 0 4px;font-size:17px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="tag">PÁGINA DE PRUEBA</div>
+  <h1>Maya Travel Company</h1>
+  <p>Mapa del recorrido A → B · ViajeReady (OpenStreetMap, gratis)</p>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h3>Prueba el mapa como lo verá el cliente</h3>
+    <label for="tipo">Tipo de viaje</label>
+    <select id="tipo">
+      <option value="oneway">Solo ida — Aeropuerto → Zona</option>
+      <option value="roundtrip">Ida y regreso</option>
+    </select>
+    <label for="zona">Zona / destino</label>
+    <select id="zona"></select>
+    <div id="mapa-ida" style="margin-top:18px"></div>
+    <div id="mapa-regreso" style="margin-top:18px"></div>
+    <p class="note">Esto es exactamente el componente que se publicará en ViajeReady: la ruta se calcula
+    por carretera en el momento (OSRM), el mapa se puede mover y acercar, y el botón abre la
+    navegación guiada en Google Maps. Punto A fijo de la prueba: Aeropuerto Internacional de Cancún.</p>
+  </div>
+</div>
+<script>
+/* ViajeReady — Mapa del recorrido A → B (componente compartido).
+   Mapa: OpenStreetMap con Leaflet · Ruta por carretera: OSRM.
+   Todo gratuito y sin claves. Es un mapa de REFERENCIA del recorrido;
+   la navegación guiada se abre en Google Maps con el botón incluido.
+   Uso: RTMapa.pintar(elemento, puntoA, puntoB, {color, titulo, lang})
+   punto = { lat, lng, label } — si falta alguna coordenada, no pinta nada. */
+(function () {
+  'use strict';
+  var leafletPromise = null;
+
+  function loadLeaflet() {
+    if (window.L) return Promise.resolve();
+    if (leafletPromise) return leafletPromise;
+    leafletPromise = new Promise(function (resolve, reject) {
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(css);
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return leafletPromise;
+  }
+
+  function num(v) { var n = Number(v); return isFinite(n) ? n : null; }
+  function ok(p) { return p && num(p.lat) !== null && num(p.lng) !== null; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function mapsDirUrl(a, b) {
+    return 'https://www.google.com/maps/dir/?api=1&origin=' +
+      encodeURIComponent(num(a.lat) + ',' + num(a.lng)) +
+      '&destination=' + encodeURIComponent(num(b.lat) + ',' + num(b.lng));
+  }
+  function haversineKm(a, b) {
+    var R = 6371, dLat = (b.lat - a.lat) * Math.PI / 180, dLng = (b.lng - a.lng) * Math.PI / 180;
+    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  function pin(letter, color) {
+    return window.L.divIcon({
+      className: 'rt-pin-wrap',
+      html: '<div style="background:' + color + ';color:#fff;font-weight:800;font-size:13px;' +
+        'width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);' +
+        'display:flex;align-items:center;justify-content:center">' + letter + '</div>',
+      iconSize: [26, 26], iconAnchor: [13, 13]
+    });
+  }
+
+  function pintar(el, a, b, opts) {
+    if (!el || !ok(a) || !ok(b)) return false;
+    opts = opts || {};
+    var color = opts.color || '#0d9488';
+    var en = opts.lang === 'en';
+    var key = num(a.lat) + ',' + num(a.lng) + '>' + num(b.lat) + ',' + num(b.lng);
+    if (el.getAttribute('data-rtmap') === key && el._rtLeaflet) return true;
+    el.setAttribute('data-rtmap', key);
+    el.innerHTML =
+      (opts.titulo ? '<div style="font-weight:700;font-size:14px;margin:0 0 6px">🗺️ ' + esc(opts.titulo) + '</div>' : '') +
+      '<div class="rt-map" style="height:' + (opts.height || 240) + 'px;border-radius:12px;overflow:hidden;border:1px solid #cbd5e1;background:#e2e8f0;z-index:0"></div>' +
+      '<div class="rt-sum" style="font-size:13.5px;color:#334155;margin-top:7px">' +
+        '<b>A</b> ' + esc(a.label || '') + ' → <b>B</b> ' + esc(b.label || '') +
+        ' · <span class="rt-dist" style="color:#64748b">' + (en ? 'calculating route…' : 'calculando ruta…') + '</span></div>' +
+      '<a href="' + mapsDirUrl(a, b) + '" target="_blank" rel="noopener" ' +
+        'style="display:inline-block;margin-top:6px;font-size:13.5px;font-weight:700;color:' + color + '">' +
+        (en ? '🧭 Open in Google Maps (navigate)' : '🧭 Abrir en Google Maps (navegar)') + '</a>';
+    var mapDiv = el.querySelector('.rt-map');
+    var distEl = el.querySelector('.rt-dist');
+    loadLeaflet().then(function () {
+      if (el._rtLeaflet) { try { el._rtLeaflet.remove(); } catch (e) {} }
+      var map = window.L.map(mapDiv, { scrollWheelZoom: false });
+      el._rtLeaflet = map;
+      window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19, attribution: '© OpenStreetMap'
+      }).addTo(map);
+      var pa = [num(a.lat), num(a.lng)], pb = [num(b.lat), num(b.lng)];
+      window.L.marker(pa, { icon: pin('A', color) }).addTo(map).bindPopup(esc(a.label || 'A'));
+      window.L.marker(pb, { icon: pin('B', '#334155') }).addTo(map).bindPopup(esc(b.label || 'B'));
+      var line = window.L.polyline([pa, pb], { color: color, weight: 4, dashArray: '6 8', opacity: .75 }).addTo(map);
+      map.fitBounds(window.L.latLngBounds([pa, pb]).pad(0.18));
+      // Ruta real por carretera (OSRM, gratuito). Si falla, queda la recta de referencia.
+      var url = 'https://router.project-osrm.org/route/v1/driving/' +
+        num(a.lng) + ',' + num(a.lat) + ';' + num(b.lng) + ',' + num(b.lat) +
+        '?overview=full&geometries=geojson';
+      return fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+        if (!j || !j.routes || !j.routes[0]) throw new Error('sin ruta');
+        var rt = j.routes[0];
+        var pts = rt.geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
+        line.setLatLngs(pts).setStyle({ dashArray: null, opacity: .95 });
+        map.fitBounds(window.L.latLngBounds(pts).pad(0.08));
+        var km = rt.distance / 1000, min = Math.round(rt.duration / 60);
+        distEl.textContent = '🚗 ' + km.toFixed(1) + ' km · ≈ ' + min + ' min ' + (en ? 'by road' : 'por carretera');
+      }).catch(function () {
+        distEl.textContent = '≈ ' + haversineKm(a, b).toFixed(1) + ' km ' + (en ? 'straight-line (reference)' : 'en línea recta (referencia)');
+      });
+    }).catch(function () {
+      distEl.textContent = en ? 'map unavailable — use the Google Maps button' : 'mapa no disponible — usa el botón de Google Maps';
+    });
+    return true;
+  }
+
+  window.RTMapa = { pintar: pintar, mapsDirUrl: mapsDirUrl };
+})();
+
+</script>
+<script>
+(function(){
+  var BASE = { label: 'Aeropuerto Internacional de Cancún', lat: 21.0365, lng: -86.8771 };
+  var ZONAS = [
+    { name: 'Zona Hotelera Cancún', lat: 21.1326, lng: -86.8489 },
+    { name: 'Cancún Centro', lat: 21.1619, lng: -86.8515 },
+    { name: 'Puerto Morelos', lat: 20.8483, lng: -86.8759 },
+    { name: 'Playa del Carmen', lat: 20.6296, lng: -87.0739 },
+    { name: 'Tulum', lat: 20.2114, lng: -87.4654 }
+  ];
+  var sel = document.getElementById('zona');
+  ZONAS.forEach(function(z, i){ var o = document.createElement('option'); o.value = i; o.textContent = z.name; sel.appendChild(o); });
+  function pintar(){
+    var z = ZONAS[Number(sel.value)];
+    var destino = { label: z.name, lat: z.lat, lng: z.lng };
+    RTMapa.pintar(document.getElementById('mapa-ida'), BASE, destino, { color: '#0d9488', titulo: 'Tu recorrido — ida', height: 300 });
+    var reg = document.getElementById('mapa-regreso');
+    if (document.getElementById('tipo').value === 'roundtrip') {
+      RTMapa.pintar(reg, destino, BASE, { color: '#0d9488', titulo: 'Recorrido de regreso', height: 300 });
+    } else {
+      reg.innerHTML = ''; reg.removeAttribute('data-rtmap'); reg._rtLeaflet = null;
+    }
+  }
+  sel.onchange = pintar;
+  document.getElementById('tipo').onchange = pintar;
+  pintar();
+})();
+</script>
+</body>
+</html>
