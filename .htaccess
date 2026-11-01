@@ -1,8 +1,10 @@
 # Enlaces cortos de Maya Travel Company -> ViajeReady
-Redirect 302 /reservas https://viajeready.newageprosystem.com/reservas-maya-travel.html
-Redirect 302 /mis-reservas https://viajeready.newageprosystem.com/mis-reservas.html?tenant=maya-travel
-Redirect 302 /pagar https://viajeready.newageprosystem.com/pagar.html?tenant=maya-travel
-Redirect 302 /rastrear https://viajeready.newageprosystem.com/rastrear.html
-Redirect 302 /portal https://viajeready.newageprosystem.com/portal.html
-Redirect 302 /conductor https://viajeready.newageprosystem.com/conductor.html
-Redirect 302 /invitacion https://viajeready.newageprosystem.com/invite.html
+# RewriteRule con QSA: deja pasar los parámetros (p. ej. el token ?t= del conductor)
+RewriteEngine On
+RewriteRule ^reservas/?$ https://viajeready.newageprosystem.com/reservas-maya-travel.html [R=302,L,QSA]
+RewriteRule ^mis-reservas/?$ https://viajeready.newageprosystem.com/mis-reservas.html?tenant=maya-travel [R=302,L,QSA]
+RewriteRule ^pagar/?$ https://viajeready.newageprosystem.com/pagar.html?tenant=maya-travel [R=302,L,QSA]
+RewriteRule ^rastrear/?$ https://viajeready.newageprosystem.com/rastrear.html [R=302,L,QSA]
+RewriteRule ^portal/?$ https://viajeready.newageprosystem.com/portal.html [R=302,L,QSA]
+RewriteRule ^conductor/?$ https://viajeready.newageprosystem.com/conductor.html [R=302,L,QSA]
+RewriteRule ^invitacion/?$ https://viajeready.newageprosystem.com/invite.html [R=302,L,QSA]
