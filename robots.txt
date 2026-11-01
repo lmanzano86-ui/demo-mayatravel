@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lmanzano86-ui.github.io/demo-mayatravel/sitemap.xml
+Sitemap: https://mayatravelcompany.com/sitemap.xml
