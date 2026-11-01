@@ -3,8 +3,6 @@ Redirect 302 /reservas https://viajeready.newageprosystem.com/reservas-maya-trav
 Redirect 302 /mis-reservas https://viajeready.newageprosystem.com/mis-reservas.html?tenant=maya-travel
 Redirect 302 /pagar https://viajeready.newageprosystem.com/pagar.html?tenant=maya-travel
 Redirect 302 /rastrear https://viajeready.newageprosystem.com/rastrear.html
-Redirect 302 /panel https://viajeready.newageprosystem.com/admin.html
 Redirect 302 /portal https://viajeready.newageprosystem.com/portal.html
-Redirect 302 /chofer https://viajeready.newageprosystem.com/conductor.html
 Redirect 302 /conductor https://viajeready.newageprosystem.com/conductor.html
 Redirect 302 /invitacion https://viajeready.newageprosystem.com/invite.html
