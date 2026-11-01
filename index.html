@@ -25,7 +25,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;color:#333;background:#fff}
 .topbar{background:linear-gradient(90deg,#0a7a70,#00c0ae);color:#fff;font-size:13px;padding:8px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .topbar a{color:#fff;text-decoration:none;font-weight:600}
 header{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:50}
-.logo{font-size:25px;font-weight:800;color:var(--dark);line-height:1.05}
+.logo img{height:58px;width:auto;display:block}
 .logo span{color:var(--teal)}
 .logo small{display:block;font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px}
 nav a{margin:0 11px;text-decoration:none;color:var(--dark);font-weight:600;font-size:15px}
@@ -105,6 +105,8 @@ h2 .t{color:var(--teal)}
 footer{background:var(--dark);color:#bbb;text-align:center;padding:32px 20px;font-size:14px}
 footer a{color:var(--teal);text-decoration:none}
 footer .gold{color:var(--gold)}
+.footer-logo{background:#fff;border-radius:14px;padding:10px 18px;display:inline-block;margin-bottom:16px}
+.footer-logo img{height:64px;width:auto;display:block}
 .fab{position:fixed;bottom:24px;right:24px;background:#25D366;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:99}
 </style>
 </head>
@@ -116,7 +118,7 @@ footer .gold{color:var(--gold)}
 </div>
 
 <header>
-<div class="logo">Maya <span>Travel</span> Company<small>CANCÚN · MÉXICO</small></div>
+<div class="logo"><img src="imgs/logo-maya-travel.webp" alt="Maya Travel Company" width="1009" height="400"></div>
 <nav>
 <a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
 <a href="#ofertas" data-es="Ofertas" data-en="Offers">Ofertas</a>
@@ -263,6 +265,7 @@ footer .gold{color:var(--gold)}
 </div>
 
 <footer>
+<div class="footer-logo"><img src="imgs/logo-maya-travel.webp" alt="Maya Travel Company" width="1009" height="400" loading="lazy"></div>
 <div style="margin-bottom:8px;"><span data-es="Accesos:" data-en="Quick access:">Accesos:</span> <a href="https://mayatravelcompany.com/reservas" data-es="Reservar" data-en="Book">Reservar</a> · <a href="https://mayatravelcompany.com/mis-reservas" data-es="Mis reservas" data-en="My bookings">Mis reservas</a> · <a href="https://mayatravelcompany.com/pagar" data-es="Pagar" data-en="Pay">Pagar</a> · <a href="https://mayatravelcompany.com/rastrear" data-es="Rastrear" data-en="Track">Rastrear</a> · <a href="https://mayatravelcompany.com/portal" data-es="Portal" data-en="Portal">Portal</a> · <a href="https://mayatravelcompany.com/conductor" data-es="Conductor" data-en="Driver">Conductor</a> · <a href="https://mayatravelcompany.com/invitacion" data-es="Invitación" data-en="Invitation">Invitación</a></div>
 Maya Travel Company · Residencial Los Almendros SM, 77507 Cancún, Q.R., México · <a href="https://mayatravelcompany.com/">mayatravelcompany.com</a><br>
 <span class="gold">🌴</span> <span data-es="Diseño y programación:" data-en="Design & development:">Diseño y programación:</span> <a href="https://www.newageprosystem.com/" target="_blank" rel="noopener">New Age Professional System</a> · Lester Manzano · <a href="tel:+18132353313">(813) 235-3313</a> <span class="gold">🌴</span>
